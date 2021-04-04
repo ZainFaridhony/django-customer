@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="pt-5">
+    </div>
+    <div class="row">        
+        <div class="col-md-12 align-middle">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'customer' %}">Customer</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Add Customer
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url 'add-customer' %}" method="POST">
+
+                {% csrf_token %}
+                {% include 'partials/_messages.html' %}
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="first_name">First name</label>
+                        <input type="text" class="form-control" id="first_name" placeholder="First name" name="first_name" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="middle_name">Middle Name</label>
+                        <input type="text" class="form-control" id="middle_name" placeholder="Middle Name" name="middle_name">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" placeholder="Last Name" name="last_name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3 mb-4">
+                        <label for="age">Age</label>
+                        <input type="number" class="form-control" id="age" placeholder="Age" name="age" required>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <label for="gender">Gender</label>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option name="gender" value="Male" selected>Male</option>
+                            <option name="gender" value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <label for="status">Status</label>
+                        <select class="form-control" id="status" name="status" required>
+                            <option name="status" value="Single" selected>Single</option>
+                            <option name="status" value="Married">Married</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <label for="phone_number">Phone Number</label>
+                        <input type="text" class="form-control" id="phone_number" placeholder="Phone Number" name="phone_number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="Address" name="address">
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-2">
+                        <label for="company_name">Company Name</label>
+                        <input type="text" class="form-control" id="company_name" placeholder="Company Name" name="company_name">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="income">Income</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupPrepend">IDR</span>
+                            </div>
+                            <input type="number" class="form-control" id="income" placeholder="Income" name="income">
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Save" class="btn btn-primary text-right float-md-right mt-4">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

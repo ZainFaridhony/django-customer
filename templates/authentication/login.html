@@ -1,0 +1,45 @@
+{% extends 'base_auth.html' %}
+{% load compress %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card register-card">
+            <div class="card-body">
+                <div class="card-title py-3 text-center">
+                    <img src="{% static 'image/customer.png' %}" alt="" class="pb-3" style="width: 15%;">
+                    <h4>Login</h4>
+                </div>
+                <form action="{% url 'login' %}" method="post">
+                    
+                    {% csrf_token %}
+
+                    {% include 'partials/_messages.html' %}
+                    <div class="form-group">
+                        <input type="text" name="username" placeholder="Username" id="usernameField" aria-describedby="inputGroupPrepend2" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" id="passwordField" placeholder="Password" aria-describedby="inputGroupPrepend2" class="form-control form-control-sm passowrd-input-field" required>
+                        <span><i class="far fa-eye showPasswordToggle" id="togglePassword"></i></span>   
+                    </div>
+                    <input type="submit" value="Login" class="btn btn-block btn-primary submit-btn"> 
+
+                    <div class="container pt-5 pl-0">
+                        <span>Don't have an account? </span> <a href="{% url 'register' %}"> Register</a>
+                        <br>
+                        <span>Forgot password? </span> <a href="{% url 'request-password' %}"> Reset Password</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+{% compress js %}
+<script src="{% static 'js/login.js' %}"></script>
+{% endcompress %}
+
+{% endblock content %}

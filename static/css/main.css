@@ -1,0 +1,39 @@
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 576px){
+  .ms-sm-auto {
+      margin-left: auto!important;
+  }
+}
+
+.register-card {
+  margin-top: 100px;
+}
+
+.passowrd-input-field{
+  display: inline;
+}
+
+.showPasswordToggle, 
+.showPasswordToggle2{
+  position: absolute;
+  margin: 10px 0 0 -25px;
+}
+
+#passwordStrength{
+  width: 100%;
+  display: none;
+  margin-bottom: 1rem;
+}
