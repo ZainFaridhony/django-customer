@@ -1,0 +1,26 @@
+table{
+    table-layout: auto;
+    width: 2000px;
+    position: relative;
+    border-collapse: collapse; 
+}
+
+.table-customize {
+    overflow-x: auto;
+    height: 300px;
+    padding-left: 0;
+    padding-right: 0;
+}
+td, th{
+    padding: 10px;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+td a {
+    color: black;
+}
