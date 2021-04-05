@@ -85,7 +85,7 @@ class RegistrationView(View):
             )
             EmailThread(email).start()
 
-            messages.success(request, 'Account Successfully Created, please check your email for activation.')
+            messages.success(request, 'Account successfully created, please check your email for activation.')
             return render(request, 'authentication/login.html')
 
         if User.objects.filter(username=username).exists():
