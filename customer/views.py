@@ -15,7 +15,7 @@ def index(request):
     average_income = sum([int(i.income_int or 0) for i in customers])/len(customers) if len(customers) >= 1 else 0
     average_age = sum([int(i.age or 0) for i in customers])/len(customers) if len(customers) >= 1 else 0
     for cus in customers:
-        if cus.company_name not in get_company:
+        if cus.company_name not in get_company and cus.company_name:
             get_company.append(cus.company_name)
     context ={
         'customers': customers,
