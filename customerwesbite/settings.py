@@ -88,23 +88,25 @@ WSGI_APPLICATION = 'customerwesbite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd82tmnsjogq3al',
+        'USER': 'cwjivixyjqjrei',
+        'PASSWORD': '496a221b87d50ba6027126ab12ca203937fb13a94078f5c857c6a080c38af6d6',
+        'HOST': 'ec2-54-235-108-217.compute-1.amazonaws.com',
+        'PORT': 5432
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('DB_NAME'),
-#         'USER': os.environ.get('DB_USER'),
-#         'PASSWORD': os.environ.get('DB_USER_PASSWORD'),
-#         'HOST': os.environ.get('DB_HOST'),
-#         'PORT': os.environ.get('DB_PORT')
-#     }
-# }
+# postgres://cwjivixyjqjrei:496a221b87d50ba6027126ab12ca203937fb13a94078f5c857c6a080c38af6d6@ec2-54-235-108-217.compute-1.amazonaws.com:5432/d82tmnsjogq3al
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
