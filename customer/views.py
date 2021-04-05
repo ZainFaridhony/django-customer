@@ -12,8 +12,8 @@ import json
 def index(request):
     customers = Customer.objects.filter(owner=request.user)
     get_company = []
-    average_income = sum([i.income_int for i in customers])/len(customers) if len(customers) >= 1 else 0
-    average_age = sum([i.age for i in customers])/len(customers) if len(customers) >= 1 else 0
+    average_income = sum([int(i.income_int or 0) for i in customers])/len(customers) if len(customers) >= 1 else 0
+    average_age = sum([int(i.age or 0) for i in customers])/len(customers) if len(customers) >= 1 else 0
     for cus in customers:
         if cus.company_name not in get_company:
             get_company.append(cus.company_name)
@@ -51,6 +51,7 @@ def add_customer(request):
     customers = Customer.objects.all()
 
     if request.method == 'POST': 
+        currency_string = "Rp {:,.2f}".format(int(request.POST['income'])) if request.POST['income'] else 'Rp 0.00'
         Customer.objects.create(
             owner=request.user,
             first_name=request.POST['first_name'],
@@ -62,8 +63,8 @@ def add_customer(request):
             gender=request.POST['gender'],
             status=request.POST['status'],
             age=request.POST['age'],
-            income_int=int(request.POST['income']) if request.POST['income'] else 0,
-            income=int(request.POST['income']) if request.POST['income'] else 0,
+            income_int=request.POST['income'],
+            income= currency_string,
             )
         messages.success(request, 'Customer save successfully.')
         return redirect('customer')
@@ -79,7 +80,9 @@ def edit_customer(request, id):
     if request.method == "GET":
         return render(request, 'customer/edit_customer.html', context)
 
-    elif request.method == 'POST':      
+    elif request.method == 'POST':  
+        currency_string = "Rp {:,.2f}".format(int(request.POST['income'])) if request.POST['income'] else 'Rp 0.00'
+
         customer.first_name = request.POST['first_name']
         customer.middle_name = request.POST['middle_name']
         customer.last_name = request.POST['last_name']
@@ -89,8 +92,8 @@ def edit_customer(request, id):
         customer.gender = request.POST['gender']
         customer.status = request.POST['status']
         customer.age = request.POST['age']
-        customer.income_int=int(request.POST['income']) if request.POST['income'] else 0
-        customer.income = int(request.POST['income']) if request.POST['income'] else 0
+        customer.income_int=request.POST['income']
+        customer.income = currency_string
 
         customer.save()
         
@@ -114,9 +117,9 @@ def customer_summary(request):
     for customer in customers:
         if customer.age not in get_data_age_income:
             get_data_age_income[customer.age] = []
-        get_data_age_income[customer.age].append(customer.income_int)
+        get_data_age_income[customer.age].append(int(customer.income_int or 0))
 
-        if customer.gender == 'Male': 
+        if str(customer.gender) == 'Male': 
             gender_data[1][1] += 1
         else:
             gender_data[2][1] += 1
